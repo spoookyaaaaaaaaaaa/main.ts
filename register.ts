@@ -1,24 +1,24 @@
-const TOKEN = Deno.env.get("DISCORD_TOKEN");
-const APP_ID = Deno.env.get("APPLICATION_ID");
+const TOKEN = Deno.env.get("DISCORD_BOT_TOKEN");
+const CLIENT_ID = Deno.env.get("DISCORD_CLIENT_ID");
+const GUILD_ID = Deno.env.get("DISCORD_GUILD_ID");
 
-await fetch(`https://discord.com/api/v10/applications/${APP_ID}/commands`, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bot ${TOKEN}`,
-  },
-  body: JSON.stringify({
+const commands = [
+  {
     name: "embed",
-    description: "Create a custom embed",
-    options: [
-      {
-        name: "text",
-        description: "Text inside embed",
-        type: 3,
-        required: true,
-      },
-    ],
-  }),
-});
+    description: "Send a test embed",
+  },
+];
 
-console.log("Slash command registered!");
+await fetch(
+  `https://discord.com/api/v10/applications/${CLIENT_ID}/guilds/${GUILD_ID}/commands`,
+  {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bot ${TOKEN}`,
+    },
+    body: JSON.stringify(commands),
+  },
+);
+
+console.log("Slash commands registered!");
