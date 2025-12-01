@@ -1,5 +1,3 @@
-// main.ts — Discord interaction handler (Deno Deploy)
-// Uses discord_interactions v0.1.1 which is available on deno.land
 import {
   InteractionResponseType,
   InteractionType,
